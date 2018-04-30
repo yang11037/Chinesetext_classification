@@ -4,9 +4,9 @@
 
 from tkinter import *
 from naive_Bayes import NB
-from corpus_seg import *
-from tobunch import *
-from tf_idf import *
+from seg_helper import SegHelper
+from bunch_helper import BunchHelper
+from tfidf_helper import TfidfHelper
 from tkinter.filedialog import askdirectory
 from Knn import *
 from pre_test import *
@@ -23,34 +23,58 @@ def selectPath2():
 
 
 def NBcheck():
-    segment_train(path1.get())
-    build_Bunch_train()
-    build_tfidf_train()
+    seg = SegHelper(path1.get())
+    seg.segment_train()
+
+    bunch = BunchHelper()
+    bunch.build_Bunch_train()
+
+    Tfidf = TfidfHelper()
+    Tfidf.build_tfidf_train()
+
     NB(path1.get())
     text.insert(END, "训练完成！\n")
 
 
 
 def Knncheck():
-    segment_train(path1.get())
-    build_Bunch_train()
-    build_tfidf_train()
+    seg = SegHelper(path1.get())
+    seg.segment_train()
+
+    bunch = BunchHelper()
+    bunch.build_Bunch_train()
+
+    Tfidf = TfidfHelper()
+    Tfidf.build_tfidf_train()
+
     Knn_train(path1.get())
     text.insert(END, "训练完成！\n")
 
 
 def DTcheck():
-    segment_train(path1.get())
-    build_Bunch_train()
-    build_tfidf_train()
+    seg = SegHelper(path1.get())
+    seg.segment_train()
+
+    bunch = BunchHelper()
+    bunch.build_Bunch_train()
+
+    Tfidf = TfidfHelper()
+    Tfidf.build_tfidf_train()
+
     DTree_train(path1.get())
     text.insert(END, "训练完成！\n")
 
 
 def test():
-    segment_test(path2.get())
-    build_Bunch_test()
-    build_tfidf_test()
+    seg = SegHelper(path2.get())
+    seg.segment_test()
+
+    bunch = BunchHelper()
+    bunch.build_Bunch_test()
+
+    Tfidf = TfidfHelper()
+    Tfidf.build_tfidf_test()
+
     a, sum, check = pre_test()
     text.insert(END, "分类完成！\n")
     text.insert(END, "测试集总数为："+str(sum)+"\n")

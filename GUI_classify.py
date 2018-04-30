@@ -4,9 +4,9 @@
 
 from tkinter import *
 from tkinter.filedialog import askdirectory
-from corpus_seg import *
-from tobunch import *
-from tf_idf import *
+from seg_helper import SegHelper
+from bunch_helper import *
+from tfidf_helper import *
 from sklearn.externals import joblib
 from rwTool import movefile, writefile
 
@@ -18,9 +18,14 @@ def selectpath():
 def start():
     # 选择路径时
     if var.get() == 0:
-        segment_test(path.get(), 1)
-        build_Bunch_test(1)
-        build_tfidf_test()
+        seg = SegHelper(path.get(), 1)
+        seg.segment_test()
+
+        bunchhelper = BunchHelper(1)
+        bunchhelper.build_Bunch_test()
+
+        Tfidf = TfidfHelper()
+        Tfidf.build_tfidf_test()
         # 导入测试集
 
         testpath = "test_corpus_bag/test_tfidf.dat"
@@ -44,9 +49,14 @@ def start():
             os.remove(txt_path)      # 每次都将上一次的缓存删除
         content = path.get().encode('utf-8')
         writefile(txt_path, content)
-        segment_test(txt_path, 2)
-        build_Bunch_test(2)
-        build_tfidf_test()
+        seg = SegHelper(txt_path, 2)
+        seg.segment_test()
+
+        bunchhelper = BunchHelper(2)
+        bunchhelper.build_Bunch_test()
+
+        Tfidf = TfidfHelper()
+        Tfidf.build_tfidf_test()
 
         testpath = "test_corpus_bag/test_tfidf.dat"
         test_set = readbunch(testpath)
