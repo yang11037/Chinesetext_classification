@@ -10,7 +10,9 @@ def metrics_result(actual, predict):
     print('精度:{0:.3f}'.format(metrics.precision_score(actual, predict, average='weighted')))
     print('召回:{0:0.3f}'.format(metrics.recall_score(actual, predict, average='weighted')))
     print('f1-score:{0:.3f}'.format(metrics.f1_score(actual, predict, average='weighted')))
-    return '{0:.3f}'.format(metrics.precision_score(actual, predict, average='weighted'))
+    return '{0:.3f}'.format(metrics.precision_score(actual, predict, average='weighted')), \
+           '{0:.3f}'.format(metrics.recall_score(actual, predict, average='weighted')), \
+           '{0:.3f}'.format(metrics.f1_score(actual, predict, average='weighted'))
 
 
 def pre_test():
@@ -37,5 +39,5 @@ def pre_test():
 
     # 计算分类精度：
 
-    a = metrics_result(test_set.label, result)
-    return a, sum, check
+    a, b, c = metrics_result(test_set.label, result)
+    return a, b, c, sum, check

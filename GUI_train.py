@@ -75,11 +75,13 @@ def test():
     Tfidf = TfidfHelper()
     Tfidf.build_tfidf_test()
 
-    a, sum, check = pre_test()
+    a, b, c, sum, check = pre_test()
     text.insert(END, "分类完成！\n")
     text.insert(END, "测试集总数为："+str(sum)+"\n")
     text.insert(END, "分类错误数为："+str(check)+"\n")
-    text.insert(END, "分类精度为："+a + "\n")
+    text.insert(END, "准确率：" + a + "\n")
+    text.insert(END, "召回率：" + b + "\n")
+    text.insert(END, "F1：" + c + "\n")
 
 
 root = Tk()
