@@ -12,7 +12,7 @@ def NB(path):
     train_set = readbunch(trainpath)
 
     # 训练分类器：输入词袋向量和分类标签，alpha:0.001 alpha越小，迭代次数越多，精度越高
-    clf = MultinomialNB(alpha=0.001).fit(train_set.tfidf, train_set.label)
+    clf = MultinomialNB(alpha=0.01).fit(train_set.tfidf, train_set.label)
 
     joblib.dump(clf, "./Tools/train_clf.pkl")
 
