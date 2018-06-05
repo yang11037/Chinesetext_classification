@@ -15,7 +15,7 @@ class TfidfHelper:
     def tf_idf(stpwrdlst_path, bunch_path, space_path, tfidf_path=None):
         stpwrdlst = readfile(stpwrdlst_path).splitlines()  # 读取停用词表
         bunch = readbunch(bunch_path)  # 读取Bunch对象
-        tfidf_bunch = Bunch(type=bunch.type, label=bunch.label, filepath=bunch.filepath, filename=bunch.filename,
+        tfidf_bunch = Bunch(label=bunch.label, filepath=bunch.filepath, filename=bunch.filename,
                             content=bunch.content, tfidf=[], vocabSet=[])
         # 构建了一个用于存储词向量空间的Bunch对象
 

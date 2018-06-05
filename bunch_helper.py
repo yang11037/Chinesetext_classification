@@ -17,11 +17,7 @@ class BunchHelper:
         print("正在构建文本对象")
         type_list = os.listdir(seg_path)
         # 创建Bunch对象
-        bunch = Bunch(type=[], label=[], filepath=[], filename=[],  content=[])
-        '''
-        type指类别，与label不同的是，type中的数据不会重复
-        '''
-        bunch.type.extend(type_list)  # 用type_list去填充type
+        bunch = Bunch(label=[], filepath=[], filename=[],  content=[])
 
         # 接下来遍历每个类别下的文件，将其构造成Bunch对象
         for type_dir in type_list:
@@ -42,7 +38,7 @@ class BunchHelper:
     @staticmethod
     def tobunch2(seg_path, word_bag_path):
         print("正在构建文本对象")
-        bunch = Bunch(type=[], label=[], filepath=[], filename=[], content=[])
+        bunch = Bunch(label=[], filepath=[], filename=[], content=[])
 
         file_list = os.listdir(seg_path)
         for file_dir in file_list:
@@ -57,7 +53,7 @@ class BunchHelper:
     @staticmethod
     def tobunch3(seg_path, word_bag_path):
         print("正在构建文本对象")
-        bunch = Bunch(type=[], label=[], filepath=[], filename=[], content=[])
+        bunch = Bunch(label=[], filepath=[], filename=[], content=[])
 
         bunch.filepath.append(seg_path)
         bunch.content.append(readfile(seg_path))
